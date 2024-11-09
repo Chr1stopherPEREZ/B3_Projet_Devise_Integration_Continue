@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet_Devise</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="src/css/style.css" />
+    <!-- FONT-->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!-- FAVICON -->
+    <link rel="icon" href="/src/assets/images/logo.png" />
+
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">Convertisseur de devises</h1>
+        <div class="converter-form">
+            <label for="amount">Montant :</label>
+            <input type="number" id="amount" placeholder="Entrer un montant" required>
+
+            <label for="from-currency">De :</label>
+            <select id="from-currency">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="JPY">JPY</option>
+            </select>
+
+            <label for="to-currency">À :</label>
+            <select id="to-currency">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="JPY">JPY</option>
+            </select>
+
+            <button id="convert-btn">Convertir</button>
+            <div id="result"></div>
+        </div>
+    </div>
+
+    <!-- SCRIPT -->
+
+    <script type="module" src="src/js/script.js"></script>
+</body>
+
+</html>
+
+<!-- Index.html -->
