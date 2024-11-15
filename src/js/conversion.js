@@ -1,9 +1,4 @@
-export function convertCurrency(
-  amount,
-  fromCurrency,
-  toCurrency,
-  exchangeRate
-) {
+export function convertCurrency(amount, fromCurrency, toCurrency, exchangeRate) {
   if (isNaN(amount) || amount <= 0) {
     throw new Error("Montant invalide");
   }

@@ -90,6 +90,10 @@ body .container #convert-btn {
   cursor: pointer;
   border: none;
   transition: background-color 0.3s, transform 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 body .container #convert-btn:hover {
@@ -139,4 +143,35 @@ body .container #result {
   }
 }
 
-/* Style.css */
+body .container .converter-form .currency-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+body .container .converter-form .currency-section .currency-selector {
+  display: flex;
+  align-items: center;
+}
+
+body
+  .container
+  .converter-form
+  .currency-section
+  .currency-selector
+  .currency-flag {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+body .container .converter-form .currency-section .arrow-icon {
+  font-size: 24px;
+  color: rgb(13, 55, 109);
+  margin: 0 15px;
+}
+
+/* Script.css */

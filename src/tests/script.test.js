@@ -11,9 +11,11 @@ test("Convertit 50 USD en EUR avec un taux de 0.85", () => {
   expect(convertCurrency(50, "USD", "EUR", 0.85)).toBe("42.50");
 });
 
-// Test pour gérer le cas où le montant est zéro
-test("Renvoie zéro lorsqu'on convertit un montant de 0", () => {
-  expect(convertCurrency(0, "USD", "EUR", 0.85)).toBe("0.00");
+// Test pour s'assurer que la fonction lève une erreur pour un montant de 0
+test("Lève une erreur lorsqu'on convertit un montant de 0", () => {
+  expect(() => convertCurrency(0, "USD", "EUR", 0.85)).toThrow(
+    "Montant invalide"
+  );
 });
 
 // Test pour s'assurer que la fonction lève une erreur pour un taux de change négatif

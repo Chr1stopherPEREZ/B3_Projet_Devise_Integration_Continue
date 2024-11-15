@@ -1,4 +1,4 @@
-import { convertCurrency } from "./conversion.js";
+import { convertCurrency } from "../js/conversion.js";
 
 // Fonction pour valider le montant saisi
 function validateAmount(amount) {
@@ -8,6 +8,35 @@ function validateAmount(amount) {
     return false;
   }
   return true;
+}
+
+// Mapping des devises aux codes pays pour récupérer les drapeaux
+const currencyFlags = {
+  USD: "us",
+  EUR: "eu",
+  JPY: "jp",
+  CAD: "ca",
+  AUD: "au",
+  GBP: "gb",
+  SGD: "sg",
+  CHF: "ch",
+};
+
+// Fonction pour charger les drapeaux
+function loadFlags() {
+  const fromCurrency = document.getElementById("from-currency").value;
+  const toCurrency = document.getElementById("to-currency").value;
+  const flagFrom = document.getElementById("flag-from");
+  const flagTo = document.getElementById("flag-to");
+
+  // Charger les drapeaux depuis FlagCDN
+  if (currencyFlags[fromCurrency] && currencyFlags[toCurrency]) {
+    flagFrom.src = `https://flagcdn.com/48x36/${currencyFlags[fromCurrency]}.png`;
+    flagTo.src = `https://flagcdn.com/48x36/${currencyFlags[toCurrency]}.png`;
+  } else {
+    flagFrom.src = "path-to-placeholder.png"; // Placeholder si l'URL du drapeau n'existe pas
+    flagTo.src = "path-to-placeholder.png"; // Placeholder si l'URL du drapeau n'existe pas
+  }
 }
 
 // Code lié au DOM
@@ -31,7 +60,7 @@ document.getElementById("convert-btn").addEventListener("click", function () {
     return;
   }
 
-  const apiKey = "VOTRE CLE API";
+  const apiKey = "Votre clé API";
   const apiUrl = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/${fromCurrency}`;
 
   resultElement.style.opacity = "0";
@@ -57,7 +86,6 @@ document.getElementById("convert-btn").addEventListener("click", function () {
         rate
       );
       resultElement.innerText = `${amount} ${fromCurrency} = ${convertedAmount} ${toCurrency}`;
-
       resultElement.style.opacity = "0";
       setTimeout(() => {
         resultElement.style.opacity = "1";
@@ -68,28 +96,11 @@ document.getElementById("convert-btn").addEventListener("click", function () {
     });
 });
 
-const fields = document.querySelectorAll(
-  "#amount, #from-currency, #to-currency"
-);
-let isElevated = false;
+// Charger les drapeaux au changement de sélection
+document.getElementById("from-currency").addEventListener("change", loadFlags);
+document.getElementById("to-currency").addEventListener("change", loadFlags);
 
-fields.forEach((field) => {
-  field.addEventListener("focus", () => {
-    if (!isElevated) {
-      field.classList.add("elevated");
-      isElevated = true;
-    }
-  });
-
-  field.addEventListener("blur", () => {
-    const allFieldsEmpty = Array.from(fields).every(
-      (f) => f !== document.activeElement
-    );
-    if (allFieldsEmpty) {
-      fields.forEach((f) => f.classList.remove("elevated"));
-      isElevated = false;
-    }
-  });
-});
+// Charger les drapeaux au démarrage
+loadFlags();
 
 /* Script.js */
